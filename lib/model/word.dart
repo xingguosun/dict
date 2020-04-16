@@ -10,9 +10,10 @@ class Word {
   final ph_am_mp3;
   final origin;
   final explain;
+  final img;
   List cn_mean;
   List collins;
-  Word({this.text,this.explain,this.ph_en,this.ph_en_mp3,this.ph_am,this.ph_am_mp3,this.cn_mean,this.collins,this.origin});
+  Word({this.text,this.explain,this.ph_en,this.ph_en_mp3,this.ph_am,this.ph_am_mp3,this.cn_mean,this.collins,this.origin, this.img});
 
   Future<List> getList(level) async {
     String path = 'assets/json/collins$level.json';
@@ -35,7 +36,8 @@ class Word {
         'ph_am_mp3': word.ph_am_mp3,
         'parts': word.cn_mean,
         'collins': word.collins,
-        'origin': word.origin
+        'origin': word.origin,
+        'img': word.img
       };
     }catch(e){
       map = {
@@ -57,7 +59,8 @@ class Word {
         ph_am_mp3: json['ph_am_mp3'],
         cn_mean: json['parts'],
         collins: json['collins'],
-        origin: json['origin']
+        origin: json['origin'],
+        img: json['img']
       );
     }catch(e){
       print(e);

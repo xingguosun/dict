@@ -77,7 +77,16 @@ class RememberVocabState extends State<RememberVocab> with SingleTickerProviderS
     final int level = widget.prefs.getInt('level');
     return level;
   }
-
+  Widget _getimg(){
+    return new Column(
+        children: <Widget>[
+          new Image.network(
+            currentItem.img,
+            scale: 2.0,
+          )
+        ],
+      );
+  }
   Widget _getPhMp3(){
     if(widget.prefs.getBool('en_ph')){
       return new Column(
@@ -166,9 +175,13 @@ class RememberVocabState extends State<RememberVocab> with SingleTickerProviderS
                   new Container(
                     child: _getPhMp3(),
                   ),
+                  new Container(
+                    child: _getimg(),
+                  ),
                   new Padding(padding: const EdgeInsets.only(top:10.0)),
                   new Means(currentItem: currentItem,prefs: widget.prefs),
                 ],
+                
               )
           ),
           new Row(
