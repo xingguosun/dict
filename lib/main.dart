@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:collins_vocabulary/components/category.dart';
-import 'package:collins_vocabulary/components/wordcard.dart';
+import 'package:collins_vocabulary/components/remember_index.dart';
 import 'package:collins_vocabulary/components/setting.dart';
 import 'package:collins_vocabulary/components/dictionary.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -103,7 +103,7 @@ class HomePageState extends State<HomePage>{
               controller: pageController,
               onPageChanged: pageChanged, 
               children: <Widget>[
-                new RememberVocab(prefs:snapshot.data),
+                new RememberIndex(prefs:snapshot.data),
                 new Dictionary(),
                 new WordList(prefs:snapshot.data),
                 new Mine(prefs:snapshot.data),
