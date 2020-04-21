@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:collins_vocabulary/components/word_detail.dart';
+import 'package:collins_vocabulary/components/wordcard.dart';
 import 'package:collins_vocabulary/model/word.dart';
 import 'package:collins_vocabulary/components/book_options.dart';
 import 'package:collins_vocabulary/model/db.dart';
@@ -56,17 +57,6 @@ class RememberIndexState extends State<RememberIndex> {
         ],
       );
   }
-  Widget _getBackgroundImg(){
-    return new DecoratedBox(
-      decoration: new BoxDecoration(
-        image: new DecorationImage(
-          image: new AssetImage('assets/img/mine.jpeg'),
-          // ...
-        ),
-        // ...
-      ),
-    );
-  }
   Widget _generateWidget(){
     // final word = widget.item;
     return new Container(
@@ -85,7 +75,6 @@ class RememberIndexState extends State<RememberIndex> {
         // crossAxisAlignment: WrapCrossAlignment.center,
         // runSpacing: 9.0,
         children: <Widget>[
-          
           Row(
             children: <Widget>[
               new Padding(
@@ -171,7 +160,46 @@ class RememberIndexState extends State<RememberIndex> {
         title: new Text("Dictionary"),
         elevation: 0.0,
       ),
-      body: _generateWidget(),
+      body: new Container(
+        child: new Column(
+          children: [
+            _generateWidget(),
+           new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+             children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width-20,
+                    height: 50,
+                    child: new FlatButton(
+                      // padding: new EdgeInsets.only(left:10.0, right:10.0),
+                      
+                      color: Colors.blue[800],
+                      highlightColor: Colors.blue[700],
+                      colorBrightness: Brightness.dark,
+                      splashColor: Colors.grey,
+                      child: Text("开始学习", style: new TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold
+                      ),),
+                      // shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                      onPressed: (){
+                        Navigator.of(context).push(
+                            new MaterialPageRoute(
+                                builder: (context) => new RememberVocab(prefs:widget.prefs)
+                            )
+                        );
+                      }
+                    ),
+                  ),
+                ),
+             ],
+           )
+          ],
+        ),
+      ),
     );
   }
 }
